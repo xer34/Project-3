@@ -1,0 +1,32 @@
+/* body {
+  overflow:hidden;
+}  */
+
+.lazyhero {
+  color: white;
+  text-align: right;
+  height: 15vh;
+}
+
+.titleContainer {
+  position: relative;
+  text-align: center;
+  color: white;
+  height: 95%;
+}
+.titleImage {
+  width: 100%;
+  height: 80%;
+
+}
+
+.titleText {
+    position: absolute;
+    top: 10%;
+    left: 16px;
+}
+.titleTextBottom {
+    position: absolute;
+    top: 17%;
+    left: 16px;
+  }
