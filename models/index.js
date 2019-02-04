@@ -1,3 +1,4 @@
 module.exports = {
-    user: require("./userProfile")
+    user: require("./userProfile"),
+    onsiteUser: require("./onsiteUser")
   };
