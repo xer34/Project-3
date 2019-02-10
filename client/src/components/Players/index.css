@@ -1,0 +1,99 @@
+:local(.card) {
+  width: 350px;
+  padding: 20px;
+}
+:local(.background) {
+  background-image: url("/images/tilebackground.png");
+  background-repeat: repeat;
+}
+.row.heading h2 {
+  color: rgb(34, 34, 34);
+  font-size: 52.52px;
+  line-height: 95px;
+  font-weight: 400;
+  text-align: center;
+  margin: 0 0 40px;
+  padding-bottom: 20px;
+  text-transform: uppercase;
+}
+.heading.heading-icon {
+  display: block;
+}
+.padding-lg {
+  display: block;
+  padding-top: 30px;
+
+}
+.practice-area.padding-lg {
+
+  padding-top: 55px;
+}
+.practice-area .inner {
+  border: 1px solid #999999;
+  text-align: center;
+  margin-bottom: 28px;
+  padding: 40px 25px;
+}
+.our-webcoderskull .cnt-block:hover {
+  box-shadow: 0px 0px 10px red;
+  border: 0;
+
+}
+.practice-area .inner h3 {
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  padding: 10px 0;
+}
+.practice-area .inner p {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+}
+.practice-area .inner img {
+  display: inline-block;
+}
+.our-webcoderskull .cnt-block {
+  float: left;
+  width: 250px;
+  background: rgb(34, 34, 34);
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0px 0px 10px white;
+  margin: 20px;
+
+}
+.our-webcoderskull .cnt-block figure {
+  width: 148px;
+  height: 148px;
+  border-radius: 100%;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+.our-webcoderskull .cnt-block img {
+  width: 148px;
+  height: 148px;
+  border-radius: 100%;
+}
+.our-webcoderskull .cnt-block h3 {
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 6px 0;
+  text-transform: uppercase;
+}
+.our-webcoderskull .cnt-block h3 a {
+  text-decoration: none;
+  color: white;
+}
+.our-webcoderskull .cnt-block h3 a:hover {
+  color: red;
+}
+.our-webcoderskull .cnt-block p {
+  color: white;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+}
+

@@ -1,0 +1,6 @@
+:local(.Form) {
+    position: absolute;
+    width: 50%;
+    left: 25%;
+    top: 20%;
+}

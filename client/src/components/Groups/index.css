@@ -1,0 +1,8 @@
+:local(.background) {
+    background-image: url("/images/tilebackground.png");
+    background-repeat: repeat;
+  }
+  :local(.card){
+    width: 350px;
+    padding: 20px;
+}

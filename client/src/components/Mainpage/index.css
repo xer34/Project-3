@@ -1,46 +1,39 @@
+.mainPage {
+background-color: black;
+}
 .titleImage {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  z-index: -1;
-	
-  /* Preserve aspet ratio */
-  min-width: 100%;
-  min-height: 100%;
+  /* background-image: url("/images/background.jpg"); */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
-
-@media screen and (max-width: 1024px) { /* Specific to this particular image */
-  img.bg {
-    left: 50%;
-    margin-left: -512px;   /* 50% */
-  }
-}
-
-.lazyhero {
-  color: white;
-  text-align: right;
-  height: 15vh;
-}
-
 .titleContainer {
   position: relative;
   text-align: center;
   color: white;
-  height: 95%;
 }
 .titleImage {
   width: 100%;
   height: 80%;
-
 }
-
 .titleText {
-    position: fixed;
-    top: 20%;
-    left: 16px;
+  position: fixed;
+  top: 20%;
+  left: 16px;
 }
 .titleTextBottom {
-    position: fixed;
-    top: 30%;
-    left: 16px;
-  }
+  position: fixed;
+  top: 30%;
+  left: 16px;
+}
+#title {
+  color: whitesmoke;
+  position: fixed;
+  left: 37%;
+  top: 0;
+}
+#gSignIn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}

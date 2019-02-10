@@ -1,0 +1,11 @@
+.main-wrapper-login {
+  position: absolute;
+width: 294px;
+margin: 0 auto;
+left: 40%;
+top: 30%;
+}
+:local(.background) {
+  background-image: url("/images/tilebackground.png");
+  background-repeat: repeat;
+}

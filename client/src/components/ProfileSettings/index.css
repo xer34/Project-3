@@ -1,0 +1,4 @@
+:local(.background) {
+  background-image: url("/images/tilebackground.png");
+  background-repeat: repeat;
+} 
