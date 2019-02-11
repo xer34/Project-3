@@ -17,12 +17,12 @@ background-color: black;
   height: 80%;
 }
 .titleText {
-  position: fixed;
+  position: absolute;
   top: 20%;
   left: 16px;
 }
 .titleTextBottom {
-  position: fixed;
+  position: absolute;
   top: 30%;
   left: 16px;
 }

@@ -57,7 +57,7 @@ app.post("/Register", (req, res) => {
         username: username,
         password: hash,
         location: "",
-        picture: "",
+        picture: "http://www.placecage.com/150/150",
         banner: ""
       })
       .then(result => {
@@ -114,25 +114,38 @@ app.get("/", jwtMW /* Using the express jwt MW here */, (req, res) => {
   console.log("Web Token Checked.");
   res.send("You are authenticated"); //Sending some response when authenticated
 });
+
 //routes
-app.post("/Profile", (req, res) => {
-  const { username, location } = req.body;
+app.post("/ProfileSettings", (req, res) => {
+  const { username, location, picture, banner } = req.body;
+  console.log("profile settings post:", username, location, picture, banner)
   db.onsiteUser
-  .findOneAndUpdate({username: username}, {location : location})
+  .findOneAndUpdate({username: username},  { $set: { location: location, picture: picture, banner: banner }})
     .then(result => {
-      console.log("location saved: ", result);
-      res.json("location saved");
+      console.log("updates saved: ", result);
+      res.json("updates saved");
     });
 });
 
 // post route for finding players close to you
 app.post("/Find", (req, res) => {
-  const {zip} = req.body
-  db.onsiteUser.find( { location: zip } )
-  .then(result => {
-    res.json(result)
-  })
-})
+  const { zip } = req.body;
+  db.onsiteUser.find({ location: zip }).then(result => {
+    res.json(result);
+  });
+});
+
+//
+app.post("/Profile", (req, res) => {
+  const { name } = req.body;
+  // console.log(name)
+  db.onsiteUser
+    .findOne({ username: name })
+    .then(result => {
+      res.json(result);
+      console.log(result)
+    })
+});
 module.exports = app;
 //=======================================================================
 //=======================================================================

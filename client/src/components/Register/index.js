@@ -45,6 +45,7 @@ export default class Register extends Component {
     return (
       <React.Fragment>
         <div className="bg">
+        <img src="/images/loginBackground.jpg" alt="bg" className="bg" />
           <Nav />
           <div className="main-wrapper-login">
             <div className="box">

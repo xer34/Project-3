@@ -1,27 +1,55 @@
-import React, { Component } from "react";
-import ProfileNav from "../ProfileNav";
+import React from "react";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import withAuth from "../withAuth";
-import styles from "./index.css";
 import axios from "axios";
+import "./index.css";
+import ProfileNav from "../ProfileNav";
+import AuthHelperMethods from "../AuthHelperMethods";
 
-//
-class ProfileSettings extends Component {
+class ProfileSettings extends React.Component {
   constructor(props) {
     super(props);
-    //
-    this.state = {};
+
+    this.state = {
+      id: "",
+      name: this.props.confirm.username,
+      location: "",
+      picture: "",
+      banner: ""
+    };
   }
-  //
+
+
+  componentDidMount() {
+    axios
+      .post("/Profile", {
+        name: this.state.name
+      })
+      .then(data => {
+        console.log("data", data);
+        var userData = data.data;
+        this.setState({
+          id: userData.id,
+          username: userData.username
+        });
+        console.log(this.state);
+      });
+  }
+
+  Auth = new AuthHelperMethods();
 
   handleFormSubmit = e => {
     e.preventDefault();
     axios
       .post("/ProfileSettings", {
-        username: this.state.name,
-        location: this.state.zipcode
+        username: this.state.username,
+        picture: this.state.picture,
+        banner: this.state.banner,
+        location: this.state.location
       })
       .then(data => {
-        console.log(data)
+        console.log(data);
+        this.props.history.replace("/Profile");
       });
   };
 
@@ -33,77 +61,44 @@ class ProfileSettings extends Component {
   };
 
   render() {
-    const divStyle = {
-      width: "100%"
-    };
-
-    //
     return (
-      <div className={styles.background}>
+      <div>
         <ProfileNav />
-        <br />
-        <div className="container">
-          <div className="row">
-            <div className="col-md-3 ">
-              <div className="list-group ">
-                <a
-                  href="/"
-                  className="list-group-item list-group-item-action active"
-                >
-                  Dashboard
-                </a>
-              </div>
-            </div>
-            <div className="col-md-9">
-              <div className="card">
-                <div className="card-body">
-                  <div className="row">
-                    <div className="col-md-12">
-                      <h4>Your Profile</h4>
-                      <hr />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-12">
-                      <form style={divStyle}>
-                        <div className="form-group row">
-                          <label
-                            htmlFor="picture"
-                            className="col-12 col-form-label"
-                          >
-                            Profile Image
-                          </label>
-                          <div className="col-12">
-                            <input
-                              id="picture"
-                              name="picture"
-                              placeholder="Profile Image URL"
-                              className="form-control here"
-                              type="text"
-                              onChange={this._handleChange}
-                            />
-                          </div>
-                        </div>
-                        <div className="form-group row">
-                          <div className="offset-4 col-12">
-                            <button
-                              name="submit"
-                              type="submit"
-                              className="btn btn-primary"
-                              onClick={this.handleFormSubmit}
-                            >
-                              Update My Profile
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <img src="/images/loginBackground.jpg" alt="bg" className="bg" />
+        <Form>
+          <FormGroup>
+            <Label for="picture">Profile Picture URL</Label>
+            <Input
+              type="picture"
+              name="picture"
+              id="picture"
+              placeholder="URL For Custom Picture"
+              onChange={this._handleChange}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="banner">Banner Picture URL</Label>
+            <Input
+              type="banner"
+              name="banner"
+              id="banner"
+              placeholder="URL For Custom Banner"
+              onChange={this._handleChange}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="location">Zip Code</Label>
+            <Input
+              type="location"
+              name="location"
+              id="location"
+              placeholder="Enter 5 Digit Zip Here"
+              onChange={this._handleChange}
+            />
+          </FormGroup>
+
+          <Button onClick={this.handleFormSubmit}>Submit</Button>
+        </Form>
       </div>
     );
   }

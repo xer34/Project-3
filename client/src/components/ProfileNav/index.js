@@ -59,7 +59,14 @@ class ProfileNav extends React.Component {
                 <NavLink href="/Meta">Meta</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/Login" onClick={this._handleLogout} className={style.logoutButton}>
+                <NavLink href="/ProfileSettings">Settings</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  href="/Login"
+                  onClick={this._handleLogout}
+                  className={style.logoutButton}
+                >
                   Logout
                 </NavLink>
               </NavItem>

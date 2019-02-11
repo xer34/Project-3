@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./index.css";
 import ProfileNav from "../ProfileNav";
 import style from "./index.css";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+
 import axios from "axios";
 /* Once the 'Authservice' and 'withAuth' componenets are created, import them into App.js */
 import AuthHelperMethods from "../AuthHelperMethods";
@@ -20,13 +20,6 @@ class Profile extends Component {
       picture: "",
       banner: ""
     };
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.setState(prevState => ({
-      modal: !prevState.modal
-    }));
   }
 
   _handleChange = e => {
@@ -49,8 +42,11 @@ class Profile extends Component {
     e.preventDefault();
     axios
       .post("/Profile", {
+        id: this.state.id,
         username: this.state.name,
-        location: this.state.zipcode
+        location: this.state.zipcode,
+        picture: this.state.picture,
+        banner: this.state.banner
       })
       .then(data => {
         console.log(data);
@@ -59,7 +55,23 @@ class Profile extends Component {
   };
 
   componentDidMount() {
-    console.log("mounted!");
+    axios
+      .post("/Profile", {
+        name: this.state.name
+      })
+      .then(data => {
+        console.log("data", data);
+        var userData = data.data;
+        this.setState({
+          id: userData.id,
+          username: userData.username,
+          location: userData.location,
+          picture: userData.picture,
+          banner: userData.banner
+        });
+        console.log(this.state);
+
+      });
   }
   //Render the protected component
   render() {
@@ -68,10 +80,14 @@ class Profile extends Component {
       name = this.props.confirm.username;
     }
     // console.log("Rendering Appjs!");
+    var styles2 = {
+      background: `url(${this.state.banner})`
+    };
 
     return (
       <div className={style.background}>
         <ProfileNav />
+        <img src="/images/loginBackground.jpg" alt="bg" className="bg" />
         <div className="container db-social">
           <div className="jumbotron jumbotron-fluid" />
           <div className="container-fluid">
@@ -100,7 +116,7 @@ class Profile extends Component {
                         <div className="image-default">
                           <img
                             className="rounded-circle"
-                            src="https://vignette.wikia.nocookie.net/warhammer40k/images/5/53/UltramarinesWarrior2.JPG/revision/latest/scale-to-width-down/250?cb=20130918083105"
+                            src={`${this.state.picture}`}
                             alt="..."
                           />
                         </div>
@@ -109,75 +125,7 @@ class Profile extends Component {
                           <div className="location">{this.state.zipcode}</div>
                         </div>
                       </div>
-                      <div className="col-xl-4 col-md-4 d-flex justify-content-lg-end justify-content-md-end justify-content-center">
-                        <Button color="dark" onClick={this.toggle}>
-                          Settings
-                        </Button>
-                        <Modal
-                          isOpen={this.state.modal}
-                          toggle={this.toggle}
-                          className={this.props.className}
-                        >
-                          <ModalHeader toggle={this.toggle}>
-                            Settings
-                          </ModalHeader>
-                          <ModalBody>
-                            Set your location below. Currently we only support
-                            zipcodes inside the United States.
-                            <br />
-                            <br />
-                            <input
-                              className="form-item"
-                              id="zip"
-                              placeholder="Zip Code"
-                              name="zipcode"
-                              type="text"
-                              pattern="[0-9]{5}"
-                              title="Five digit zip code"
-                              maxLength="5"
-                              onChange={this._handleChange}
-                            />
-                            <br />
-                            <br />
-                            You can change your profile picture here. Enter any
-                            valid URL.
-                            <br />
-                            <br />
-                            <input
-                              className="form-item"
-                              id="picture"
-                              placeholder="Profile Picture"
-                              name="picture"
-                              type="text"
-                              title="picture"
-                              onChange={this._handleChange}
-                            />
-                            <br />
-                            <br />
-                            You can change your banner picture here. Enter any
-                            valid URL.
-                            <br />
-                            <br />
-                            <input
-                              className="form-item"
-                              id="banner"
-                              placeholder="Banner Picture"
-                              name="banner"
-                              type="text"
-                              title="banner"
-                              onChange={this._handleChange}
-                            />
-                          </ModalBody>
-                          <ModalFooter>
-                            <Button color="primary" onClick={this.saveChanges}>
-                              Save Changes
-                            </Button>
-                            <Button color="secondary" onClick={this.toggle}>
-                              Cancel
-                            </Button>
-                          </ModalFooter>
-                        </Modal>
-                      </div>
+                      <div className="col-xl-4 col-md-4 d-flex justify-content-lg-end justify-content-md-end justify-content-center" />
                     </div>
                   </div>
                 </div>

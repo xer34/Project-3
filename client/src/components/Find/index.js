@@ -62,6 +62,7 @@ class Find extends Component {
   render() {
     return (
       <div className={style.background}>
+      <img src="/images/findBackground.jpg" alt="bg" className="bg" />
         <ProfileNav />
         <div className="main-wrapper-login">
           <div className="box">

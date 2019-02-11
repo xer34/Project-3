@@ -38,6 +38,7 @@ class Login extends Component {
   render() {
     return (
       <React.Fragment>
+      <img src="/images/loginBackground.jpg" alt="bg" className="bg" />
         <Nav />
         <div className="main-wrapper-login">
           <div className="box">
