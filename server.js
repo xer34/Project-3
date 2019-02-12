@@ -119,6 +119,7 @@ app.get("/", jwtMW /* Using the express jwt MW here */, (req, res) => {
 app.post("/ProfileSettings", (req, res) => {
   const { username, location, picture, banner } = req.body;
   console.log("profile settings post:", username, location, picture, banner)
+  
   db.onsiteUser
   .findOneAndUpdate({username: username},  { $set: { location: location, picture: picture, banner: banner }})
     .then(result => {

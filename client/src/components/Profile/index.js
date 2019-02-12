@@ -80,16 +80,15 @@ class Profile extends Component {
       name = this.props.confirm.username;
     }
     // console.log("Rendering Appjs!");
-    var styles2 = {
-      background: `url(${this.state.banner})`
-    };
-
+   
+      
+    
     return (
       <div className={style.background}>
         <ProfileNav />
         <img src="/images/loginBackground.jpg" alt="bg" className="bg" />
         <div className="container db-social">
-          <div className="jumbotron jumbotron-fluid" />
+          <div className="jumbotron jumbotron-fluid"/>
           <div className="container-fluid">
             <div className="row justify-content-center">
               <div className="col-xl-11">

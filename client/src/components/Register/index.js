@@ -4,25 +4,20 @@ import Nav from "../Navbar";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./index.css";
-
 export default class Register extends Component {
   Auth = new AuthHelperMethods();
   state = {
     username: "",
     password: ""
   };
-
   _handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
-
     console.log(this.state);
   };
-
   handleFormSubmit = e => {
     e.preventDefault();
-
     axios
       .post("/Register", {
         username: this.state.username,
@@ -33,19 +28,17 @@ export default class Register extends Component {
         this.props.history.replace("/Login");
       });
   };
-
   componentDidMount() {
     console.log(this.Auth.loggedIn());
     if (this.Auth.loggedIn()) {
       this.props.history.push("/Profile");
     }
   }
-
   render() {
     return (
       <React.Fragment>
         <div className="bg">
-        <img src="/images/loginBackground.jpg" alt="bg" className="bg" />
+          <img src="/images/loginBackground.jpg" alt="bg" className="bg" />
           <Nav />
           <div className="main-wrapper-login">
             <div className="box">
