@@ -10,6 +10,8 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const exjwt = require("express-jwt");
+const path = require('path');
+
 //=======================================================================
 const jwtMW = exjwt({
   secret: "super secret"
@@ -43,10 +45,16 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+
+app.use(express.static(__dirname))
+app.use(express.static(path.join(__dirname, 'client/build')))
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html')) 
+})
 //=======================================================================
 app.use(routes);
 //routes
-// require("./routes/htmlRoutes")
 //=======================================================================
 app.post("/Register", (req, res) => {
   const { username, password } = req.body;
