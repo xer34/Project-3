@@ -49,8 +49,9 @@ app.use((req, res, next) => {
 
 // app.use(express.static(__dirname))
 app.use(express.static(path.join(__dirname, 'client/build')))
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html')) 
+
+app.get('/*',  (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build/index.html')) 
 })
 //=======================================================================
 app.use(routes);
@@ -140,6 +141,13 @@ app.post("/ProfileSettings", (req, res) => {
 app.post("/Find", (req, res) => {
   const { zip } = req.body;
   db.onsiteUser.find({ location: zip }).then(result => {
+    res.json(result);
+  });
+});
+
+app.post("/Events", (req, res) => {
+  const { zip } = req.body;
+  db.groups.find({ location: zip }).then(result => {
     res.json(result);
   });
 });
